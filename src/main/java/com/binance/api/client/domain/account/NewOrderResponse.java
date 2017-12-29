@@ -218,6 +218,7 @@ public class NewOrderResponse {
         .append("side", side)
         .append("stopPrice", stopPrice)
         .append("icebergQty", icebergQty)
+        .append("fills", fills)
         .toString();
   }
 }
