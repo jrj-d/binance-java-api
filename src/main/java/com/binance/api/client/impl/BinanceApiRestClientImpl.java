@@ -102,14 +102,14 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
   public NewOrderResponse newOrder(NewOrder order) {
     return executeSync(binanceApiService.newOrder(order.getSymbol(), order.getSide(), order.getType(),
         order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getStopPrice(), order.getIcebergQty(),
-        order.getRecvWindow(), order.getTimestamp()));
+        order.getRecvWindow(), order.getTimestamp(), order.getNewOrderRespType()));
   }
 
   @Override
   public void newOrderTest(NewOrder order) {
     executeSync(binanceApiService.newOrderTest(order.getSymbol(), order.getSide(), order.getType(),
         order.getTimeInForce(), order.getQuantity(), order.getPrice(), order.getStopPrice(), order.getIcebergQty(),
-        order.getRecvWindow(), order.getTimestamp()));
+        order.getRecvWindow(), order.getTimestamp(), order.getNewOrderRespType()));
   }
 
   // Account endpoints

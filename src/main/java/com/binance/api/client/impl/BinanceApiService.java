@@ -1,6 +1,7 @@
 package com.binance.api.client.impl;
 
 import com.binance.api.client.constant.BinanceApiConstants;
+import com.binance.api.client.domain.NewOrderRespType;
 import com.binance.api.client.domain.OrderSide;
 import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.TimeInForce;
@@ -75,14 +76,16 @@ public interface BinanceApiService {
   Call<NewOrderResponse> newOrder(@Query("symbol") String symbol, @Query("side") OrderSide side, @Query("type") OrderType type,
                                   @Query("timeInForce") TimeInForce timeInForce, @Query("quantity") String quantity, @Query("price") String price,
                                   @Query("stopPrice") String stopPrice, @Query("icebergQty") String icebergQty,
-                                  @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+                                  @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp,
+                                  @Query("newOrderRespType") NewOrderRespType newOrderRespType);
 
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @POST("/api/v3/order/test")
   Call<Void> newOrderTest(@Query("symbol") String symbol, @Query("side") OrderSide side, @Query("type") OrderType type,
                           @Query("timeInForce") TimeInForce timeInForce, @Query("quantity") String quantity, @Query("price") String price,
                           @Query("stopPrice") String stopPrice, @Query("icebergQty") String icebergQty,
-                          @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
+                          @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp,
+                          @Query("newOrderRespType") NewOrderRespType newOrderRespType);
 
   @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
   @GET("/api/v3/order")

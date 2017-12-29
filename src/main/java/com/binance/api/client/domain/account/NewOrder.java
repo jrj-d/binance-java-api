@@ -1,6 +1,7 @@
 package com.binance.api.client.domain.account;
 
 import com.binance.api.client.constant.BinanceApiConstants;
+import com.binance.api.client.domain.NewOrderRespType;
 import com.binance.api.client.domain.OrderSide;
 import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.TimeInForce;
@@ -70,6 +71,11 @@ public class NewOrder {
   private long timestamp;
 
   /**
+   * Verbosity of response when new order is submitted.
+   */
+  private NewOrderRespType newOrderRespType;
+
+  /**
    * Creates a new order with all required parameters.
    */
   public NewOrder(String symbol, OrderSide side, OrderType type, TimeInForce timeInForce, String quantity) {
@@ -88,6 +94,17 @@ public class NewOrder {
   public NewOrder(String symbol, OrderSide side, OrderType type, TimeInForce timeInForce, String quantity, String price) {
     this(symbol, side, type, timeInForce, quantity);
     this.price = price;
+  }
+
+  /**
+   * Creates a new order with all required parameters plus price, which is optional for MARKET orders,
+   * and newOrderRespType, which is set to default RESULT by Binance API server if not specified.
+   */
+  public NewOrder(String symbol, OrderSide side, OrderType type, TimeInForce timeInForce, String quantity,
+                  String price, NewOrderRespType newOrderRespType) {
+    this(symbol, side, type, timeInForce, quantity);
+    this.price = price;
+    this.newOrderRespType = newOrderRespType;
   }
 
   public String getSymbol() {
@@ -186,6 +203,15 @@ public class NewOrder {
 
   public NewOrder timestamp(long timestamp) {
     this.timestamp = timestamp;
+    return this;
+  }
+
+  public NewOrderRespType getNewOrderRespType() {
+    return newOrderRespType;
+  }
+
+  public NewOrder newOrderRespType(NewOrderRespType newOrderRespType) {
+    this.newOrderRespType = newOrderRespType;
     return this;
   }
 
